@@ -1,0 +1,20 @@
+FightingArena v0.1.0
+- First Version of the game, including :
+    - Intro and Character Selection menu
+    - Three choices (Warrior / Mage / Rogue)
+    - Three enemies creature (Orc / Ogre / Goblin)
+    - First attempt of Combat System
+    - Possibility to flee from a fight
+    - Early Character Statistics System
+    - Some basic interface / display
+
+For future versions :
+- Explode main code which means :
+    - Adding classes for player characters
+    - Adding classes for enemy creatures
+    - Look for a better display System
+- Add Game Over System
+- Add Experience Point System
+- Add Inventory System
+- Create an Item Class ?
+- Enhance Statistics System and Combat System accordingly
