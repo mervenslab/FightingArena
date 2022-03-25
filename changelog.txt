@@ -1,4 +1,19 @@
-FightingArena v0.1.0
+FightingArena v0.2.0 2022/03/25
+- Added a class file for character management
+- Integrated changes in main code implied by classCharacter
+- Added a classHero who inherit from classCharacter
+
+For version 0.3.x :
+- Add a Save System
+- Add an Healing System
+- Add Experience Point System ( Experience Point Calculator Idea : sum of all of the statistics of the enemy)
+    - Enemy stat variation : Should be between - 25% and + 25% of the default value)
+- Enhance Statistics System and Combat System accordingly
+
+
+____________________________________________________________________________________________________________________________
+
+FightingArena v0.1.0 2022/02/07
 - First Version of the game, including :
     - Intro and Character Selection menu
     - Three choices (Warrior / Mage / Rogue)
@@ -8,13 +23,10 @@ FightingArena v0.1.0
     - Early Character Statistics System
     - Some basic interface / display
 
-For future versions :
-- Explode main code which means :
-    - Adding classes for player characters
-    - Adding classes for enemy creatures
-    - Look for a better display System
+For version 0.2.x :
+- Adding classes for player characters  * checked
+- Adding classes for enemy creatures
+- Look for a better display System
 - Add Game Over System
-- Add Experience Point System
 - Add Inventory System
 - Create an Item Class ?
-- Enhance Statistics System and Combat System accordingly

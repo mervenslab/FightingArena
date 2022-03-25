@@ -1,13 +1,16 @@
 #!/usr/bin/env python3.6
 # Fighting Arena v0.1.0
 # coding: utf-8 
+
 import os;
 import re;
 import random;
+from Classes.classCharacter import Character;
+from Classes.classCharacter import Hero;
 clear = lambda: os.system('clear');
 clear();
 
-character = None;
+hero = None;
 
 
 def intro():
@@ -33,14 +36,14 @@ def intro():
 
     if choice == 1:
         print("You have chosen a Warrior.");
-        character = "Warrior";
+        hero = "Warrior";
 
     if choice == 2:
         print("You have chosen a Rogue.");
-        character = "Rogue";
+        hero = "Rogue";
     if choice == 3:
         print("You have chosen a Mage.");
-        character = "Mage";
+        hero = "Mage";
 
     print(" ");
     print(" ");
@@ -56,26 +59,20 @@ def intro():
 
     wait = input("Press Enter to continue.");
 
-    return character;
+    return hero;
 
-def maingame(character):
+def maingame(hero):
     keyboardInput = None;
-    stats = None;
     
-    if character == "Warrior":
-        stats = {"Strengh" : 10, "Speed" : 5, "Intelligence" : 2, "Life" : 20};
-    if character == "Rogue":
-        stats = {"Strengh" : 5, "Speed" : 10, "Intelligence" : 5, "Life" : 10};
-    if character == "Mage":
-        stats = {"Strengh" : 2, "Speed" : 5, "Intelligence" : 10, "Life" : 10};
+    hero = Hero(hero)
 
     while keyboardInput!="q":
         clear();
         print("                                                                  Statistics : ");
-        print("                                                                  Strengh : "+str(stats["Strengh"]));
-        print("                                                                  Speed : "+str(stats["Speed"]));
-        print("                                                                  Intelligence : "+str(stats["Intelligence"]));
-        print("                                                                  Life : "+str(stats["Life"]));
+        print("                                                                  Strengh : "+str(hero.getStrength()));
+        print("                                                                  Speed : "+str(hero.getSpeed()));
+        print("                                                                  Intelligence : "+str(hero.getIntelligence()));
+        print("                                                                  Life : "+str(hero.getLife()));
         print(" ");
         print(" ");
         print(" ");
@@ -97,12 +94,12 @@ def maingame(character):
             random.seed();
             exploring = random.randrange(1,100,1);
             if exploring in range(0,80,1):
-                encounter(stats);
+                encounter(hero);
             if exploring in range(81,100,1):
                 print("You found a potion of life !")
                 keyboardInput = input();
 
-def encounter(stats):
+def encounter(hero):
     clear();
     orcStats = {"Strengh" : 7, "Speed" : 6, "Intelligence" : 3, "Life" : 15, "Name" : "Orc"};
     ogerStats = {"Strengh" : 14, "Speed" : 4, "Intelligence" : 1, "Life" : 30, "Name" : "Oger"};
@@ -122,10 +119,10 @@ def encounter(stats):
     print("Intelligence : "+str(mobStats["Intelligence"]));
     print("Life : "+str(mobStats["Life"]));
     print("                                                                    Statistics :  ");
-    print("                                                                    Strengh : "+str(stats["Strengh"]));
-    print("                                                                    Speed : "+str(stats["Speed"]));
-    print("                                                                    Intelligence : "+str(stats["Intelligence"]));
-    print("                                                                    Life : "+str(stats["Life"]));
+    print("                                                                    Strengh : "+str(hero.getStrength()));
+    print("                                                                    Speed : "+str(hero.getSpeed()));
+    print("                                                                    Intelligence : "+str(hero.getIntelligence()));
+    print("                                                                    Life : "+str(hero.getLife()));
     print(" ");
     print(" ");
     print(" ");
@@ -145,21 +142,21 @@ def encounter(stats):
         else:
             print("You have failed to run away !");
             keyboardInput = input();
-            fight(stats,mobStats);
+            fight(hero,mobStats);
     if keyboardInput == "f":
         print("Ready to fight !");
         keyboardInput = input();
-        fight(stats,mobStats);
+        fight(hero,mobStats);
         
     
-def fight(stats,mobStats):
+def fight(hero,mobStats):
     clear();
     turn = 0;
-    if mobStats['Speed'] < stats['Speed']:
+    if mobStats['Speed'] < hero.getSpeed():
         turn = 1;
     else:
         turn = 2;
-    while mobStats['Life'] > 0 and stats['Life'] > 0:
+    while mobStats['Life'] > 0 and hero.getLife() > 0:
         clear();
         print(""+mobStats["Name"]+" Statistics : ");
         print("Strengh : "+str(mobStats["Strengh"]));
@@ -167,10 +164,10 @@ def fight(stats,mobStats):
         print("Intelligence : "+str(mobStats["Intelligence"]));
         print("Life : "+str(mobStats["Life"]));
         print("                                                                    Statistics :  ");
-        print("                                                                    Strengh : "+str(stats["Strengh"]));
-        print("                                                                    Speed : "+str(stats["Speed"]));
-        print("                                                                    Intelligence : "+str(stats["Intelligence"]));
-        print("                                                                    Life : "+str(stats["Life"]));
+        print("                                                                    Strengh : "+str(hero.getStrength()));
+        print("                                                                    Speed : "+str(hero.getSpeed()));
+        print("                                                                    Intelligence : "+str(hero.getIntelligence()));
+        print("                                                                    Life : "+str(hero.getLife()));
         print(" ");
         print(" ");
         print(" ");
@@ -207,12 +204,12 @@ def fight(stats,mobStats):
             if mobChoice == 4:
                 print(mobStats['Name']+" choose to block left ! ");
             if attackChoice == mobChoice:
-                damage = stats['Strengh']+stats['Speed']-mobStats['Strengh']-mobStats['Speed'];
+                damage = hero.getStrength()+hero.getSpeed()-mobStats['Strengh']-mobStats['Speed'];
                 if damage > 0:
                     print("You have dealed "+str(damage)+" damages !");
                     mobStats['Life'] = mobStats['Life']-damage;
             else:
-                damage = stats['Strengh'];
+                damage = hero.getStrength();
                 print("You have dealed "+str(damage)+" damages !");
                 mobStats['Life'] = mobStats['Life']-damage;
             turn = 2;
@@ -242,17 +239,17 @@ def fight(stats,mobStats):
             if mobChoice == 4:
                 print(mobStats['Name']+" choose to strike left ! ");
             if blockChoice == mobChoice:
-                damage = stats['Strengh']+stats['Speed']-mobStats['Strengh']-mobStats['Speed'];
+                damage = mobStats['Strengh']+mobStats['Speed']-hero.getStrength()-hero.getSpeed();
                 if damage > 0:
                     print("You have taken "+str(damage)+" damages !");
-                    stats['Life'] = stats['Life']-damage;
+                    hero.setLife(hero.getLife()-damage);
             else:
-                damage = stats['Strengh'];
+                damage = mobStats['Strengh'];
                 print("You have taken "+str(damage)+" damages !");
-                stats['Life'] = stats['Life']-damage;
+                hero.setLife(hero.getLife()-damage);
             turn = 1;
             keyboardInput = input();
     keyboardInput = input();
 
-character = intro();
-maingame(character);
+hero = intro();
+maingame(hero);
