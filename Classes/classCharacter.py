@@ -43,3 +43,28 @@ class Hero(Character):
             self.characterSpeed = random.randrange(3,8,1)
             self.characterIntelligence = random.randrange(8,13,1)
             self.characterLife = self.characterStrength*2+1
+
+class Monster(Character):
+    monsterType = ""
+
+    def __init__(self, monsterType):
+        self.monsterType = monsterType
+        if monsterType == "Orc":
+            self.characterStrength = random.randrange(5,10,1)
+            self.characterSpeed = random.randrange(4,9,1)
+            self.characterIntelligence = random.randrange(1,6,1)
+            self.characterLife = self.characterStrength*2+1
+        if monsterType == "Oger":
+            self.characterStrength = random.randrange(12,17,1)
+            self.characterSpeed = random.randrange(2,7,1)
+            self.characterIntelligence = random.randrange(0,3,1)
+            self.characterLife = self.characterStrength*2+1
+        if monsterType == "Goblin":
+            self.characterStrength = random.randrange(1,5,1)
+            self.characterSpeed = random.randrange(8,13,1)
+            self.characterIntelligence = random.randrange(4,9,1)
+            self.characterLife = self.characterStrength*2+1
+
+    def getType(self):
+        return self.monsterType
+        

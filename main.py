@@ -7,6 +7,7 @@ import re;
 import random;
 from Classes.classCharacter import Character;
 from Classes.classCharacter import Hero;
+from Classes.classCharacter import Monster;
 clear = lambda: os.system('clear');
 clear();
 
@@ -101,23 +102,22 @@ def maingame(hero):
 
 def encounter(hero):
     clear();
-    orcStats = {"Strengh" : 7, "Speed" : 6, "Intelligence" : 3, "Life" : 15, "Name" : "Orc"};
-    ogerStats = {"Strengh" : 14, "Speed" : 4, "Intelligence" : 1, "Life" : 30, "Name" : "Oger"};
-    goblinStats = {"Strengh" : 3, "Speed" : 10, "Intelligence" : 6, "Life" : 8, "Name" : "Goblin"};
     mobSelect = random.randrange(1,4,1);
-    mobStats = None;
+
     if mobSelect == 1:
-        mobStats = orcStats;
+        monster = "Orc"
     if mobSelect == 2:
-        mobStats = ogerStats;
+        monster = "Oger"
     if mobSelect == 3:
-        mobStats = goblinStats;    
-    print("An "+mobStats["Name"]+" is on your way : ");
-    print(""+mobStats["Name"]+" Statistics : ");
-    print("Strengh : "+str(mobStats["Strengh"]));
-    print("Speed : "+str(mobStats["Speed"]));
-    print("Intelligence : "+str(mobStats["Intelligence"]));
-    print("Life : "+str(mobStats["Life"]));
+        monster = "Goblin" 
+
+    monster = Monster(monster)
+    print("An "+monster.getType()+" is on your way : ");
+    print(""+monster.getType()+" Statistics : ");
+    print("Strength : "+str(monster.getStrength()))
+    print("Speed : "+str(monster.getSpeed()))
+    print("Intelligence : "+str(monster.getIntelligence()))
+    print("Life : "+str(monster.getLife()))
     print("                                                                    Statistics :  ");
     print("                                                                    Strengh : "+str(hero.getStrength()));
     print("                                                                    Speed : "+str(hero.getSpeed()));
@@ -142,27 +142,27 @@ def encounter(hero):
         else:
             print("You have failed to run away !");
             keyboardInput = input();
-            fight(hero,mobStats);
+            fight(hero,monster);
     if keyboardInput == "f":
         print("Ready to fight !");
         keyboardInput = input();
-        fight(hero,mobStats);
+        fight(hero,monster);
         
     
-def fight(hero,mobStats):
+def fight(hero,monster):
     clear();
     turn = 0;
-    if mobStats['Speed'] < hero.getSpeed():
+    if monster.getSpeed() < hero.getSpeed():
         turn = 1;
     else:
         turn = 2;
-    while mobStats['Life'] > 0 and hero.getLife() > 0:
+    while monster.getLife() > 0 and hero.getLife() > 0:
         clear();
-        print(""+mobStats["Name"]+" Statistics : ");
-        print("Strengh : "+str(mobStats["Strengh"]));
-        print("Speed : "+str(mobStats["Speed"]));
-        print("Intelligence : "+str(mobStats["Intelligence"]));
-        print("Life : "+str(mobStats["Life"]));
+        print(""+monster.getType()+" Statistics : ");
+        print("Strengh : "+str(monster.getStrength()))
+        print("Speed : "+str(monster.getSpeed()))
+        print("Intelligence : "+str(monster.getIntelligence()))
+        print("Life : "+str(monster.getLife()))
         print("                                                                    Statistics :  ");
         print("                                                                    Strengh : "+str(hero.getStrength()));
         print("                                                                    Speed : "+str(hero.getSpeed()));
@@ -196,22 +196,22 @@ def fight(hero,mobStats):
             if attackChoice == 4:
                 print("You choose to strike left ! ");
             if mobChoice == 1:
-                print(mobStats['Name']+" choose to block high ! ");
+                print(monster.getType()+" choose to block high ! ");
             if mobChoice == 2:
-                print(mobStats['Name']+" choose to block low ! ");
+                print(monster.getType()+" choose to block low ! ");
             if mobChoice == 3:
-                print(mobStats['Name']+" choose to block right ! ");
+                print(monster.getType()+" choose to block right ! ");
             if mobChoice == 4:
-                print(mobStats['Name']+" choose to block left ! ");
+                print(monster.getType()+" choose to block left ! ");
             if attackChoice == mobChoice:
-                damage = hero.getStrength()+hero.getSpeed()-mobStats['Strengh']-mobStats['Speed'];
+                damage = hero.getStrength()+hero.getSpeed()-monster.getStrength()-monster.getSpeed();
                 if damage > 0:
                     print("You have dealed "+str(damage)+" damages !");
-                    mobStats['Life'] = mobStats['Life']-damage;
+                    monster.setLife(monster.getLife()-damage);
             else:
                 damage = hero.getStrength();
                 print("You have dealed "+str(damage)+" damages !");
-                mobStats['Life'] = mobStats['Life']-damage;
+                monster.setLife(monster.getLife()-damage);
             turn = 2;
             keyboardInput = input();
         elif turn == 2:
@@ -231,20 +231,20 @@ def fight(hero,mobStats):
             if blockChoice == 4:
                 print("You choose to block left ! ");
             if mobChoice == 1:
-                print(mobStats['Name']+" choose to strike high ! ");
+                print(monster.getType()+" choose to strike high ! ");
             if mobChoice == 2:
-                print(mobStats['Name']+" choose to strike low ! ");
+                print(monster.getType()+" choose to strike low ! ");
             if mobChoice == 3:
-                print(mobStats['Name']+" choose to strike right ! ");
+                print(monster.getType()+" choose to strike right ! ");
             if mobChoice == 4:
-                print(mobStats['Name']+" choose to strike left ! ");
+                print(monster.getType()+" choose to strike left ! ");
             if blockChoice == mobChoice:
-                damage = mobStats['Strengh']+mobStats['Speed']-hero.getStrength()-hero.getSpeed();
+                damage = monster.getStrength()+monster.getSpeed()-hero.getStrength()-hero.getSpeed();
                 if damage > 0:
                     print("You have taken "+str(damage)+" damages !");
                     hero.setLife(hero.getLife()-damage);
             else:
-                damage = mobStats['Strengh'];
+                damage = monster.getStrength();
                 print("You have taken "+str(damage)+" damages !");
                 hero.setLife(hero.getLife()-damage);
             turn = 1;

@@ -1,7 +1,8 @@
-FightingArena v0.2.0 2022/03/25
+FightingArena v0.2.0 2022/03/29
 - Added a class file for character management
 - Integrated changes in main code implied by classCharacter
 - Added a classHero who inherit from classCharacter
+- All same three points above has been made for Monsters
 
 For version 0.3.x :
 - Add a Save System
@@ -9,8 +10,8 @@ For version 0.3.x :
 - Add Experience Point System ( Experience Point Calculator Idea : sum of all of the statistics of the enemy)
     - Enemy stat variation : Should be between - 25% and + 25% of the default value)
 - Enhance Statistics System and Combat System accordingly
-
-
+- Look for a better display System
+- Get Monsters and Heroes Stats out of the main code and reach it from a data file
 ____________________________________________________________________________________________________________________________
 
 FightingArena v0.1.0 2022/02/07
@@ -24,9 +25,8 @@ FightingArena v0.1.0 2022/02/07
     - Some basic interface / display
 
 For version 0.2.x :
-- Adding classes for player characters  * checked
-- Adding classes for enemy creatures
-- Look for a better display System
+- Adding classes for player characters * checked
+- Adding classes for enemy creatures * checked
 - Add Game Over System
 - Add Inventory System
 - Create an Item Class ?
