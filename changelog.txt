@@ -1,10 +1,16 @@
-FightingArena v0.2.0 2022/03/29
+FightingArena v0.2.1 2022/04/26 : Gameplay Improvment
+- Added a Game Over System in main code
+- Added an Item Class. It's pretty basic for the moment.
+- Only Life Potion exists as an item right now and it is not useable
+
+
+FightingArena v0.2.0 2022/03/29 : Characters System Overhaul
 - Added a class file for character management
 - Integrated changes in main code implied by classCharacter
 - Added a classHero who inherit from classCharacter
 - All same three points above has been made for Monsters
 
-For version 0.3.x :
+For version 0.3.x And Above :
 - Add a Save System
 - Add an Healing System
 - Add Experience Point System ( Experience Point Calculator Idea : sum of all of the statistics of the enemy)
@@ -12,9 +18,12 @@ For version 0.3.x :
 - Enhance Statistics System and Combat System accordingly
 - Look for a better display System
 - Get Monsters and Heroes Stats out of the main code and reach it from a data file
+- Deconstruct main code and integrate part of it in a System Directory
+- Add Consumption System
+
 ____________________________________________________________________________________________________________________________
 
-FightingArena v0.1.0 2022/02/07
+FightingArena v0.1.0 2022/02/07 : The Beginning
 - First Version of the game, including :
     - Intro and Character Selection menu
     - Three choices (Warrior / Mage / Rogue)
@@ -27,6 +36,6 @@ FightingArena v0.1.0 2022/02/07
 For version 0.2.x :
 - Adding classes for player characters * checked
 - Adding classes for enemy creatures * checked
-- Add Game Over System
+- Add Game Over System * checked
+- Create an Item Class * checked
 - Add Inventory System
-- Create an Item Class ?

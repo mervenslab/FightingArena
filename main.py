@@ -8,6 +8,7 @@ import random;
 from Classes.classCharacter import Character;
 from Classes.classCharacter import Hero;
 from Classes.classCharacter import Monster;
+from Classes.classItem import Item;
 clear = lambda: os.system('clear');
 clear();
 
@@ -67,7 +68,7 @@ def maingame(hero):
     
     hero = Hero(hero)
 
-    while keyboardInput!="q":
+    while keyboardInput!="q" and hero.getLife() > 0:
         clear();
         print("                                                                  Statistics : ");
         print("                                                                  Strengh : "+str(hero.getStrength()));
@@ -98,7 +99,19 @@ def maingame(hero):
                 encounter(hero);
             if exploring in range(81,100,1):
                 print("You found a potion of life !")
+
                 keyboardInput = input();
+
+    if hero.getLife() <= 0 :
+        clear();
+        print("... You are dead ...");
+        print(" ");
+        print("... Game over !");
+        print(" ");
+        print(" ");
+        print(" ");
+        print("Press Enter to leave.");
+        keyboardInput = input();
 
 def encounter(hero):
     clear();
